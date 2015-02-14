@@ -1,0 +1,173 @@
+﻿@model News.Models.User
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="~/StyleSheet.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="~/Contents/img/favicon.ico">
+
+
+    <link href="~/Contents/css/froala_editor.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Contents/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Loading Bootstrap -->
+    <link href="~/Contents/css/vendor/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="~/Contents/css/flat-ui.min.css" rel="stylesheet">
+    <link href="~/Contents/css/style.css" rel="stylesheet">
+    <!-- Loading Fonts -->
+    <link href="~/Contents/css/font-awesome.css" rel="stylesheet">
+    <link href="~/Contents/css/icomoon.css" rel="stylesheet">
+    <!--link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700' rel='stylesheet' type='text/css'-->
+
+    <meta charset="utf-8">
+    <title>Signin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/Scripts/jquery-1.7.1.js"></script>
+    <script src="/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="/Scripts/jquery.validate.js"></script>
+    <script src="/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="/Scripts/scripts.js"></script>
+
+</head>
+<body style="font-family:'Comic Sans MS'">
+    <div id="wrapper-main-ead">
+        <header>
+
+            <nav>
+                <div id="search-wrapper-ead" class="vertical-center-ead">
+                    <div class="input-group " style="border-color:darkcyan;width:250px; background-color:white">
+                        <div class="input-group-addon  input-sm  " style="background-color:darkcyan"><span class="icon-earth" style="color:whitesmoke"></span></div>
+                        <p class="form-control input-sm badge " style="border-color:darkcyan;width:250px; background-color:white" id="search-input"><h6><strong style="color:orange">News Box</strong></h6></p>
+                    </div>
+                </div>
+            </nav>
+            <nav class="col-lg-push-3 col-lg-offset-1">
+                <div id="search-wrapper-ead" style="width:750px" class="vertical-center-ead">
+                    <div class="input-group ">
+                        <p class="form-control input-sm badge " style="border-color:darkcyan;width:750px; background-color:white" id="search-input"><h6><strong style="color:orange">Breaking News</strong></h6></p>
+                    </div>
+                </div>
+            </nav>
+
+        </header>
+        <div id="wrapper-content-ead">
+            <div class="container-fluid">
+                <div class="row">
+                    <div id="login-wrapper-ead" style="">
+                        <div class="form-container-ead">
+                            <h2>Login</h2>
+                            @*<form id="login-form-ead">*@
+                            @using (Html.BeginForm("VerifyUser", "User", FormMethod.Post))
+                            {
+                                <div class="input-group">
+                                    <div class="input-group-addon input-sm"><span class="icon-user"></span></div>
+                                    @*      <input id="login-username" class="input-sm" type="text" placeholder="Username" />*@
+                                    <div class=" input-lg">
+                                        @Html.TextBoxFor(model => model.username, "", new { id = "login-username", placeholder = "Username" })
+                                        @Html.ValidationMessageFor(model => model.username)
+                                    </div>
+
+                                </div>
+                                <div class="input-group">
+                                    <div class="input-group-addon input-sm"><span class="icon-key"></span></div>
+                                    @*    <input id="login-password" class="input-sm" type="text" placeholder="Password" />*@
+
+                                    <div class=" input-lg">
+                                        @Html.PasswordFor(model => model.password, new { id = "login-password", placeholder = "Password" })
+                                        @Html.ValidationMessageFor(model => model.password)
+                                    </div>
+                                </div>
+                                <button id="login-btn" class="btn-social-stumbleupon " style="color:white"><strong>Login</strong></button>
+                                @*</form>*@
+                            }
+                        </div>
+                        <div class="form-container-ead">
+                            <h2>Signup</h2>
+                            <!--<form action="/User/Profile" id="signup-form-ead" method="post">-->
+                            @using (Html.BeginForm("AddProfile", "User", FormMethod.Post, new { id = "signup-form" }))
+                            {
+                                <div class="input-group">
+                                    <div class="input-group-addon input-sm"><span class="icon-mail2"></span></div>
+                                    <div class=" input-lg">
+                                        @Html.TextBoxFor(model => model.email, "", new { id = "signup-email", placeholder = "Email" })
+                                        @Html.ValidationMessageFor(model => model.email)
+                                    </div>
+                                </div>
+                                  <!--<input id="signup-email" name="email" class="input-sm" type="text" placeholder="Email Address" />-->
+
+                                <div class="input-group">
+                                    <div class="input-group-addon input-sm"><span class="icon-user"></span></div>
+                                    <div class=" input-lg">
+                                        @Html.TextBoxFor(model => model.username, "", new { id = "signup-username", placeholder = "Username" })
+                                        <div id="mydiv" style="color:red"></div>
+                                        @Html.ValidationMessageFor(model => model.username)
+                                        <!--<input id="signup-email" name="email" class="input-sm" type="text" placeholder="Email Address" />-->
+                                        <!--<input id="signup-username" name="username" class="input-sm" type="text" placeholder="Username" />-->
+                                    </div>
+                                </div>
+
+                                <div class="input-group">
+                                    <div class="input-group-addon input-sm"><span class="icon-key"></span></div>
+                                    <div class=" input-lg">
+                                        @Html.PasswordFor(model => model.password, new { id = "signup-password", placeholder = "Password" })
+                                        @Html.ValidationMessageFor(model => model.password)
+                                        <!--<input id="signup-password" name="password" class="input-sm" type="text" placeholder="Password" />-->
+                                    </div>
+                                </div>
+                                  <!--<input id="signup-email" name="email" class="input-sm" type="text" placeholder="Email Address" />-->
+
+                                <button id="signup-btn" type="button" class="btn-social-stumbleupon"><strong>Signup</strong></button>
+                                <button id="s-btn" type="submit" class="btn-social-stumbleupon hidden"><strong>S</strong></button>
+                            }
+                            <!--    </form>-->
+                        </div>
+                        <div style="clear:both"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container -->
+        </div>
+    </div>
+
+
+    <script>
+        $.ready();
+        var submitBtn_s_up = document.getElementById("signup-btn");
+        var email_s_up = document.getElementById("signup-email");
+        var username_s_up = document.getElementById("signup-username");
+        var passwrd_s_up = document.getElementById("signup-password");
+        var submitBtn_login = document.getElementById("login-btn");
+        var username_login = document.getElementById("login-username");
+        var passwrd_login = document.getElementById("login-password");
+        var form = document.getElementById("signup-form");
+        var flag = "" +@ViewBag.flag
+        username_login.getAttributeNode("placeholder").value
+        if (flag == "false") {
+
+            username_login.getAttributeNode("placeholder").value = "Invalid Username";
+            username_login.style.backgroundColor = "lightpink";
+            passwrd_login.getAttributeNode("placeholder").value = "Invalid Password";
+            passwrd_login.style.backgroundColor = "lightpink";
+        }
+
+        var s_btn = document.getElementById("s-btn");
+        submitBtn_s_up.onclick=function(e){
+            jQuery.getJSON("/User/VerifyUsername?username=" + username_s_up.value, function (data) {
+                if (data) {
+                    $("#mydiv").text("Not Available").show().fadeOut(2000);
+                    passwrd_s_up.textContent = "";
+                    username_s_up.getAttributeNode("placeholder").value = "Invalid Username";
+                    username_s_up.style.backgroundColor = "lightpink";
+                    
+                }
+                else {
+                    username_s_up.style.backgroundColor = "lightgreen";
+                    s_btn.click();
+                }
+            });
+            }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,143 @@
+﻿@model  News.Models.Post
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>New</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/Contents/css/froala_editor.min.css" rel="stylesheet" type="text/css" />
+    <link href="/Contents/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+    <!-- Loading Bootstrap -->
+    <link href="/Contents/css/vendor/bootstrap.min.css" rel="stylesheet">
+    <!-- Loading Flat UI -->
+    <link href="/Contents/css/flat-ui.min.css" rel="stylesheet">
+    <link href="/Contents/css/style.css" rel="stylesheet">
+    <link href="/StyleSheet.css" rel="stylesheet">
+
+    <!-- Loading Fonts -->
+    <link href="/Contents/css/font-awesome.css" rel="stylesheet">
+    <link href="/Contents/css/icomoon.css" rel="stylesheet">
+    <!--link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700' rel='stylesheet' type='text/csS';-->
+    <link rel="shortcut icon" href="~/Contents/img/favicon.ico">
+    <script src="/Scripts/jquery-1.7.1.js"></script>
+    <script src="/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="/Scripts/jquery.validate.js"></script>
+    <script src="/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="/Scripts/scripts.js"></script>
+
+</head>
+<body style="font-family:'Comic Sans MS'">
+    <div id="wrapper-main-ead">
+        <header>
+            <nav>
+
+                <div id="search-wrapper-ead" class="vertical-center-ead">
+                    <div class="input-group " style="font-family:'Comic Sans MS';width:250px">
+                        <div class="input-group-addon  input-sm  " style="background-color:darkcyan"><span class="icon-earth" style="color:whitesmoke"></span></div>
+                        <p class="form-control input-sm badge " style="font-family:'Comic Sans MS';border-color:darkcyan;width:250px; background-color:white" id="search-input"><h6><strong style="font-family:'Comic Sans MS';color:orange">News Box</strong></h6></p>
+                    </div>
+                </div>
+            </nav>
+            <ul id="account-manage-options-ead" class="vertical-center-ead">
+                <li>
+                    <span class="icon-profile " style="color:darkcyan"></span>
+                    <span><a href="/User/Wall" style="font-family:'Comic Sans MS';color:orange">Wall</a></span>
+                </li>
+                <li>
+                    <span class="icon-earth" style="color:darkcyan"></span>
+                    <span><a href="/User/NewFeeds" style="font-family:'Comic Sans MS';color:orange">News Feeds</a></span>
+                </li>
+                <li>
+                    <span class="icon-sad" style="color:red"></span>
+                    <span>  <a href="/User/Logout" style="font-family:'Comic Sans MS';color:red">SignOut</a></span>
+                </li>
+            </ul>
+        </header>
+        <div id="wrapper-content-ead">
+            <div class="container-fluid">
+                <div class="row">
+                    <div id="left-sidebar-ead" class="vertical-center-ead">
+                        <div id="tag-info-ead" class="panel panel-default">
+                            <h4>
+                                <a href="#">@Model.title</a>
+                            </h4>
+                            <ul id="info-tags-ead">
+                                <li>
+                                    <span class="icon-price-tags"></span>
+                                </li>
+                                @foreach (var t in @Model.Tags)
+                                {
+                                    <li>@t.tags</li>
+                                }
+                            </ul>
+                            <ul id="info-stats-ead">
+                                <li>By <a href="/User/Wall?usernameO=@Model.User.username">@Model.User.username</a></li>
+                                <li>Posted on @Model.date.Day/@Model.date.Month/@Model.date.Year</li>
+                                <li>@Model.Comments.Count responses</li>
+                                <li>@Model.likes likes</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="main-content-ead" class="col-sm-8 col-sm-offset-4 col-md-6 col-md-offset-3-5">
+                        <div id="content-panel-ead" class="panel panel-default">
+                            <div id="content-body-ead">
+                                <div class="content-post-ead">
+                                    <div id="promotion-wrapper-ead"><a href="#"><span class="icon-heart"></span> Like</a></div>
+                                    <h3>@Model.title</h3>
+                                    <h5 style="font-family:'Comic Sans MS';color:darkcyan">@Model.discrition.Substring(0,50)</h5>
+                                    <p>
+                                       @Model.discrition.ToString()
+                                    </p>
+                                    
+                                    <hr />
+                                </div>
+                            </div>
+                            <footer>
+                                <h2><a href="/User/Wall?usernameO=@Model.User.username">@Model.User.username</a></h2>
+                                <div id="author-image-ead" class="center-block">
+                                    <img  style="font-family:'Comic Sans MS';width:220px; height:200px" class="center-block" src="/Images/@Model.uid .jpg" />
+                                </div>
+                                <ul id="comments-list-ead">
+                                    <br />
+                                    @foreach (var comment in Model.Comments)
+                                    {
+                                        <hr />
+                                        <li style="font-family:'Comic Sans MS';font-family:'Comic Sans MS';font-weight:400"><span>@comment.date</span>
+                                    <br /><strong>@comment.text - </strong><a href="/User/Wall?usernameO=@comment.User.username" style="font-family:'Comic Sans MS';color:orange">@comment.User.username</a></li>
+
+                                    }
+                                    <hr />
+                                </ul>
+                                <form action="/User/AddComment?id=@Model.Id&username=@(((News.Models.User)Session["user"]).username)" id="myform" style="font-family:'Comic Sans MS';text-align:center" method="post">
+                                    
+                                    <textarea  name="comment" style="font-family:'Comic Sans MS';margin:0px; width:100%;font-size:medium;color:black" id="comment"></textarea>
+                                    
+                                    <button id="btnn" type="button" style="font-family:'Comic Sans MS';background-color: #34495e;font-family:'Comic Sans MS'" class="btn-social-stumbleupon"><span class="icon-plus"></span> New Comment</button>
+                                    <script>
+                                        var b=document.getElementById("btnn");
+                                        var txt=document.getElementById("comment");
+                                        b.onclick = function (e)
+                                        {
+                                            if (txt.trim().length > 0) {
+                                                document.forms["myform"].submit();
+                                            }
+                                        }
+                                    </script>
+                                </form>
+                                <script>
+                                    var b = document.getElementById("btnn");
+                                    b.onclick = function (e) {
+                                        document.forms["myform"].submit();
+                                    }
+
+                                </script>
+                            </footer>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container -->
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,102 @@
+﻿@model News.Models.User
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Loading Bootstrap -->
+    <link href="/Contents/css/vendor/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="/Contents/css/flat-ui.min.css" rel="stylesheet">
+    <link href="/Contents/css/style.css" rel="stylesheet">
+    <!-- Loading Fonts -->
+    <link href="/Contents/css/icomoon.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700' rel='stylesheet' type='text/css'>
+
+    <link rel="shortcut icon" href="/Contents/img/favicon.ico">
+    <script src="/Scripts/jquery-1.7.1.js"></script>
+    <script src="/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="/Scripts/jquery.validate.js"></script>
+    <script src="/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="/Scripts/scripts.js"></script>
+
+</head>
+<body style="font-family:'Comic Sans MS'">
+    <div id="wrapper-main-ead">
+        <header>
+            <nav>
+
+                <div id="search-wrapper-ead" class="vertical-center-ead">
+                    <div class="input-group " style="width:250px">
+                        <div class="input-group-addon  input-sm  " style="background-color:darkcyan"><span class="icon-earth" style="color:whitesmoke"></span></div>
+                        <p class="form-control input-sm badge " style="border-color:darkcyan;width:250px; background-color:white" id="search-input"><h6><strong style="color:orange">News Box</strong></h6></p>
+                    </div>
+                </div>
+            </nav>
+            <ul id="account-manage-options-ead" class="vertical-center-ead">
+                <li>
+                    <span class="icon-profile " style="color:darkcyan"></span>
+                    <span><a href="Wall" style="color:orange">Wall</a></span>
+                </li>
+                <li>
+                    <span class="icon-earth " style="color:darkcyan"></span>
+                    <span><a href="NewFeeds" style="color:orange">News Feeds</a></span>
+                </li>
+                <li>
+                    <span class="icon-sad " style="color:red"></span>
+                    <span>  <a href="/User/Logout" style="color:red">SignOut</a></span>
+                </li>
+            </ul>
+        </header>
+        <div id="wrapper-content-ead">
+            <div class="container-fluid">
+                <div class="row">
+                    <div id="main-content-ead" class="col-sm-10 col-sm-offset-1">
+                        <div id="content-panel-ead" class="panel panel-default">
+                            <div id="content-body-ead" class="profile-body-ead ">
+                                <div id="profile-pic-section-ead" class="profile-section-ead">
+                                    <a href="#"><span onclick="getFile()" style=" position: absolute; left: 0; margin: 1em; color: darkcyan;" class="icon-camera"></span></a>
+
+                                    <img src="/Images/@Model.username .jpg" style="width:546px ; height:500px; ">
+                                    <script>
+                                        function getFile(e) {
+                                            $('#fileUpload').click();
+                                        }
+
+                                        function onch(e) {
+                                            document.forms['myForm'].submit();
+                                        }
+                                    </script>
+
+
+                                    <form name="myForm" action="/User/AddImage" id="form" method="post" enctype="multipart/form-data">
+
+                                        <input id="fileUpload" style="position:absolute; overflow:hidden;width:0px;height:0px; " type="file" name="image" onchange="onch()" />
+                                    </form>
+                                </div>
+                                <div id="profile-details-section-ead" class="profile-section-ead">
+                                    <a href="/User/EditProfile?username=@Model.username"><span style="position:absolute; right:0; margin:1em;" class="icon-pencil2"></span></a>
+                                    <h5 style="text-align: left; margin-top: 2em; margin-left: 1em;">@Model.name</h5>
+                                    <ul id="profile-details-ead" class="vertical-center-ead">
+                                        <li><span>Email Address:</span>@Model.email</li>
+                                        <li><span>Contact Number:</span>@Model.phone</li>
+                                        <li><span>DOB:</span> @Model.dob.Day-@Model.dob.Month-@Model.dob.Year </li>
+                                        <li><span>Profession:</span>@Model.profession</li>
+                                    </ul>
+                                </div>
+                                <!--footer>
+                                  <span>Footer</span>
+                                </footer-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container -->
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

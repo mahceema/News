@@ -1,0 +1,131 @@
+﻿@model News.Models.User
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Edit Profile</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/Contents/css/vendor/bootstrap.min.css" rel="stylesheet">
+    <link href="/Contents/css/flat-ui.min.css" rel="stylesheet">
+    <link href="/Contents/css/style.css" rel="stylesheet">
+    <link href="/Contents/css/font-awesome.css" rel="stylesheet">
+    <link href="/Contents/css/icomoon.css" rel="stylesheet">
+    <link rel="shortcut icon" href="~/Contents/img/favicon.ico">
+    <link href="/Contents/css/froala_editor.min.css" rel="stylesheet" type="text/css" />
+    <link href="/StyleSheet.css" rel="stylesheet" />
+    <link href="/Contents/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jquery-1.7.1.js"></script>
+    <script src="/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="/Scripts/jquery.validate.js"></script>
+    <script src="/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="/Scripts/scripts.js"></script>
+
+
+</head>
+<body style="font-family:'Comic Sans MS'">
+    <div id="wrapper-main-ead">
+        <header>
+            <nav>
+
+                <div id="search-wrapper-ead" class="vertical-center-ead">
+                    <div class="input-group " style="width:250px">
+                        <div class="input-group-addon  input-sm  " style="background-color:darkcyan"><span class="icon-earth" style="color:whitesmoke"></span></div>
+                        <p class="form-control input-sm badge " style="border-color:darkcyan;width:250px; background-color:white" id="search-input"><h6><strong style="color:orange">News Box</strong></h6></p>
+                    </div>
+                </div>
+            </nav>
+            <ul id="account-manage-options-ead" class="vertical-center-ead">
+                <li>
+                    <span class="icon-profile " style="color:darkcyan"></span>
+                    <span><a href="Wall" style="color:orange">Wall</a></span>
+                </li>
+                <li>
+                    <span class="icon-earth " style="color:darkcyan"></span>
+                    <span><a href="NewFeeds" style="color:orange">News Feeds</a></span>
+                </li>
+                <li>
+                    <span class="icon-sad " style="color:red"></span>
+                    <span>  <a href="/User/Logout" style="color:red">SignOut</a></span>
+                </li>
+            </ul>
+        </header>
+
+        <div id="wrapper-content-ead">
+            <div class="container-fluid">
+                <div class="row">
+                    <div id="main-content-ead" class="col-sm-6 col-sm-offset-3">
+                        <div id="content-panel-ead" class="panel panel-default">
+                            <div id="content-body-ead">
+                                <div class="content-post-ead">
+                                    <header>
+                                        <h2><span id="content-title-ead">Edit Profile</span></h2>
+                                    </header>
+                                    @using (Html.BeginForm("UpdateUser/" + Model.username, "User", FormMethod.Post, new { id = "profile-form-ead" }))
+                                    {
+                                        <div class="input-group">
+                                            <div class="input-group-addon input-sm"><span class="icon-mail2" style="color:orange"></span></div>
+                                            <div class=" input-lg">
+                                                @Html.TextBoxFor(model => model.email, Model.email, new { id = "signup-email", placeholder = "Email" })
+                                                @Html.ValidationMessageFor(model => model.email)
+                                            </div>
+
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="input-group-addon input-sm"><span class="icon-user" style="color:darkcyan"></span></div>
+                                            <div class=" input-lg">
+                                                @Html.TextBoxFor(model => model.name, Model.name, new { id = "signup-name", placeholder = "Full Name" })
+                                                @Html.ValidationMessageFor(model => model.username)
+                                            </div>
+
+                                        </div>
+
+                                        <div class="input-group">
+                                            <div class="input-group-addon input-sm"><span class="icon-key" style="color:orange"></span></div>
+                                            <div class=" input-lg">
+                                                @Html.TextBoxFor(model => model.password, Model.password, new { id = "signup-password", placeholder = "Password" })
+                                                @Html.ValidationMessageFor(model => model.password)
+                                            </div>
+                                        </div>
+
+                                        <div class="input-group">
+                                            <div class="input-group-addon input-sm"><span class="icon-phone" style="color:darkcyan"></span></div>
+                                            <div class=" input-lg">
+                                                @Html.TextBoxFor(model => model.phone, Model.phone, new { id = "signup-phone", placeholder = "Phone Nummber" })
+                                                @Html.ValidationMessageFor(model => model.phone)
+                                            </div>
+                                        </div>
+
+                                        <div class="input-group">
+                                            <div class="input-group-addon input-sm"><span class="icon-calendar" style="color:orange"></span></div>
+                                            <div class=" input-lg">
+                                                @Html.TextBoxFor(model => model.dob, Model.dob.Day + "/" + Model.dob.Month + "/" + Model.dob.Year, new { id = "signup-DOB", placeholder = "DOB(dd-mm-yy)" })
+                                                @Html.ValidationMessageFor(model => model.dob)
+                                            </div>
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="input-group-addon input-sm "><span class="icon-briefcase" style="color:darkcyan"></span></div>
+                                            <div class=" input-lg">
+                                                @Html.TextBoxFor(model => model.profession, Model.profession, new { id = "signup-prof", placeholder = "Profession" })
+                                                @Html.ValidationMessageFor(model => model.profession)
+                                            </div>
+                                        </div>
+
+                                        <button class="btn-social-stumbleupon pull-right" style="background-color:darkcyan"><strong>Update</strong></button>
+                                    }
+                                </div>
+                            </div>
+                            <!--footer>
+                              <span>Footer</span>
+                            </footer-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container -->
+        </div>
+    </div>
+
+
+</body>
+</html>

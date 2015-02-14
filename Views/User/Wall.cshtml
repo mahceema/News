@@ -1,0 +1,122 @@
+﻿@model  News.Models.User
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>News Feed</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Loading Bootstrap -->
+    <link href="~/Contents/css/vendor/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="~/Contents/css/flat-ui.min.css" rel="stylesheet">
+    <link href="~/Contents/css/style.css" rel="stylesheet">
+    <!-- Loading Fonts -->
+    <link href="~/Contents/css/icomoon.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700' rel='stylesheet' type='text/css'>
+
+    <link rel="shortcut icon" href="~/Contents/img/favicon.ico">
+    <script src="/Scripts/jquery-1.7.1.js"></script>
+    <script src="/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="/Scripts/jquery.validate.js"></script>
+    <script src="/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="/Scripts/scripts.js"></script>
+
+</head>
+<body style="font-family:'Comic Sans MS'">
+    <div id="wrapper-main-ead">
+        <header>
+            <nav>
+
+                <div id="search-wrapper-ead" class="vertical-center-ead">
+                    <div class="input-group " style="width:250px">
+                        <div class="input-group-addon  input-sm  " style="background-color:darkcyan"><span class="icon-earth" style="color:whitesmoke"></span></div>
+                        <p class="form-control input-sm badge " style="border-color:darkcyan;width:250px; background-color:white" id="search-input"><h6><strong style="color:orange">News Box</strong></h6></p>
+                    </div>
+                </div>
+            </nav>
+            <ul id="account-manage-options-ead" class="vertical-center-ead">
+                <li>
+                    <span class="icon-earth " style="color:darkcyan"></span>
+                    <span><a href="/User/NewFeeds" style="color:orange">News Feeds</a></span>
+                </li>
+                <li>
+                    <span class="icon-sad " style="color:red"></span>
+                    <span>  <a href="/User/Logout" style="color:red">SignOut</a></span>
+                </li>
+            </ul>
+        </header>
+        <div id="wrapper-content-ead">
+            <div class="container-fluid">
+                <div class="row">
+                    <div id="left-sidebar-ead" class="vertical-center-ead">
+
+                        <div id="" class="panel panel-default">
+                            <span id="new-post-trigger-ead"><span class="icon-profile" style="color:darkcyan"></span><a href="/User/UserProfile" style="padding-left:3em"> Profile</a></span>
+                        </div>
+                        <div id="" class="panel panel-default">
+                            <span id="new-tag-trigger-ead"><span class="icon-price-tags" style="color:darkcyan"></span><a href="/User/Tags" style="padding-left:3em"> Tags</a></span>
+                        </div>
+                        <div id="" class="panel panel-default">
+                            <span id="new-post-trigger-ead"><span class="icon-newspaper" style="color:darkcyan"></span><a href="NewPost" style="padding-left:3em"> Post News</a></span>
+                        </div>
+
+                    </div>
+                    <div id="main-content-ead" class="col-sm-8 col-sm-offset-4 col-md-6 col-md-offset-3-5">
+                        <div id="content-panel-ead" class="panel panel-default">
+                            <header>
+                                <span id="content-title-ead">@Model.name</span>
+                            </header>
+                            <div id="content-body-ead">
+                                @foreach (var p in Model.Posts.ToList<News.Models.Post>())
+                                {
+                                    <div class="content-post-ead">
+                                        <span class="post-title-ead"><a href="Post/@p.Id">@p.title</a></span>
+                                        <span class="post-time-ead">@p.date.Day/@p.date.Month/@p.date.Year</span>
+                                        <span class="post-author-ead">By <a href="#">@p.User.name</a></span>
+                                        <p class="post-content-ead">
+                                            @p.discrition
+                                        </p>
+                                        <footer>
+                                            <ul class="post-tags-ead">
+                                                <li>
+                                                    <span class="icon-price-tags"></span>
+                                                </li>
+                                                @foreach (var tag in p.Tags)
+                                                {
+                                                    <li>@tag.tags</li>
+                                                }
+
+                                            </ul>
+                                            <ul class="post-attr-ead">
+                                                <li>
+                                                    <span>@p.Comments.Count</span>
+                                                    <span class="icon-bubbles4"></span>
+                                                </li>
+                                                <li>
+                                                    <span>@p.likes like it</span>
+                                                    <span class="icon-heart"></span>
+                                                </li>
+                                            </ul>
+                                        </footer>
+                                        <hr />
+                                    </div>
+
+                                }
+                                <footer>
+                                    <span>Footer Stuff</span>
+                                </footer>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container -->
+            </div>
+        </div>
+
+        <!-- jQuery (necessary for Flat UI's JavaScript plugins) -->
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+    </div>
+</body>
+</html>
