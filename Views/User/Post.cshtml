@@ -84,7 +84,11 @@
                                 <div class="content-post-ead">
                                     <div id="promotion-wrapper-ead"><a href="#"><span class="icon-heart"></span> Like</a></div>
                                     <h3>@Model.title</h3>
+                                    @{if(Model.discrition.Length>50)
                                     <h5 style="font-family:'Comic Sans MS';color:darkcyan">@Model.discrition.Substring(0,50)</h5>
+                                    }else{
+                                    <h5 style="font-family:'Comic Sans MS';color:darkcyan">@Model.discrition</h5>
+                                    }
                                     <p>
                                        @Model.discrition.ToString()
                                     </p>
